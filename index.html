@@ -4,6 +4,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>CS Sound Visualizer — Prototype (Light Mode)</title>
+
+  <!-- ✅ PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- ✅ iOS PWA Support -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="CS Sound Visualizer">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+
+  <!-- ✅ Theme colors -->
+  <meta name="theme-color" content="#ffffff">
+  <meta name="background-color" content="#ffffff">
+
   <style>
     :root{
       --bg:#f9fafb;
@@ -117,15 +131,13 @@
       el.innerHTML = `<div class='badge'>${ICONS[type]}</div>`;
       root.appendChild(el);
 
-      // Fade in
       requestAnimationFrame(()=>el.classList.add('show'));
 
-      // Random smooth 2D motion with faster, wiggly movement
       let vx = (Math.random() - 0.5) * 200;
       let vy = (Math.random() - 0.5) * 200;
       let posX = x;
       let posY = y;
-      const lifespan = 3000; // increased lifespan to 3 seconds
+      const lifespan = 3000;
       let startTime = null;
 
       function animate(time){
@@ -143,7 +155,6 @@
       }
       requestAnimationFrame(animate);
 
-      // Fade out after lifespan
       setTimeout(()=>{
         el.classList.remove('show');
         el.classList.add('fadeout');
